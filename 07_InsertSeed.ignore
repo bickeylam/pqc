@@ -1,0 +1,91 @@
+-- INSERT SEED	
+
+-- company ---
+
+INSERT INTO [online].[Company] 
+(
+	[CompanyName]
+	, [Active]
+	, [UsesETender]
+)
+VALUES 
+(
+	N'Company one'
+	, 1
+	, 0
+),
+(
+	N'Company two'
+	, 1
+	, 0
+)
+
+
+-- application --
+INSERT INTO [online].[Application]
+(
+    [CompanyID]
+    , [StatusID]
+    , [NPSMaxContractValue]
+    , [NPSWorkingCapital]
+    , [NPSAVG3YearFinancialTurnover]
+    , [LatestApplication]
+    
+)
+VALUES 
+(
+    1
+    , 1
+    , 0
+    , 0
+    , 0
+    , 1
+    
+),
+(
+    2
+    , 1
+    , 0
+    , 0
+    , 0
+    , 1
+)
+GO
+
+INSERT INTO [online].[Application]
+(
+	[CompanyID]
+	, [StatusID]
+	, [NPSMaxContractValue]
+	, [NPSWorkingCapital]
+	, [NPSAVG3YearFinancialTurnover]
+	, [LatestApplication]
+)
+VALUES
+(
+	1
+	, 2
+	, 0
+	, 0
+	, 0
+	, 1
+),
+(
+	1
+	, 2
+	, 0
+	, 0
+	, 0
+	, 1
+)
+GO
+
+-- [online].[application] -- 
+INSERT INTO [online].[ApplicationOnline]
+(
+
+)
+VALUES 
+(
+
+)

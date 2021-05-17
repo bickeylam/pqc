@@ -2,9 +2,16 @@ SELECT [online].[ApplicationOnline].*,
     [online].[Company].[Name] AS [CompanyName]
 FROM [online].[ApplicationOnline]
     LEFT JOIN [online].[Company] ON [online].[Company].[CompanyID] = [online].[ApplicationOnline].[CompanyID];
+GO
+
 SELECT *
-FROM [online].[ApplicationOnline];
+FROM [online].[ApplicationOnline]
+GO
+
 SELECT *
-FROM [dbo].[Company];
+FROM [dbo].[Company]
+GO
+
 SELECT *
-FROM [online].[Company];
+FROM [online].[Company]
+GO

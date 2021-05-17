@@ -1,14 +1,7 @@
 
 $sqlServer = "."
-$database = "mytester"
+$database = "pqc_test"
 
-# IF (!(Get-Module -Name sqlps)) {
-#     Write-Host 'Loading SQLPS Module' -ForegroundColor DarkYellow
-#     Push-Location
-#     Import-Module sqlps -DisableNameChecking
-#     Pop-Location
-# }
-  
 $localScriptRoot = $PSScriptRoot
 $scripts = Get-ChildItem $localScriptRoot | Where-Object { $_.Extension -eq ".sql" }
 foreach ($script in $scripts) {
@@ -23,4 +16,5 @@ foreach ($script in $scripts) {
 # $SqlDelete = 'DELETE FROM [ApplicationOnline] WHERE []=1'
 # $SqlSelect = 'SELECT * FROM [ApplicationOnline]'
 # Invoke-Sqlcmd -ServerInstance $sqlServer -Database $database -Query $SqlDrop
-# Invoke-Sqlcmd -ServerInstance $sqlServer -Database $database -InputFile '01_CreateApplicationOnline.sql'
+# Invoke-Sqlcmd -ServerInstance $sqlServer -Database $database -InputFile '.\00_Setup.sql'
+# Invoke-Sqlcmd -ServerInstance $sqlServer -Database $database -InputFile '.\01_CreateOnlineCompany.sql'
