@@ -12,7 +12,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE [online].[xp_create_dbo_application_from_online_applicationonline] @ApplicationOnlineID [int]
+CREATE PROCEDURE [online].[xp_transfer_online_application_to_dbo_application] @ApplicationOnlineID [int]
 AS
 BEGIN
 	DECLARE @ApplicationID [int]
@@ -43,7 +43,7 @@ BEGIN
 	FROM [online].[Company]
 	WHERE [online].[Company].[CompanyID] = @CompanyID
 
-	SET @NewCompanyID = @@IDENTITY
+	SET @NewCompanyID = SCOPE_IDENTITY()
 
 	--PRINT @NewCompanyID
 	---- insert into [dbo].[company] for branch office
