@@ -1,6 +1,15 @@
 use [PQC_test]
 go
 
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+------------------------------------------------------------
+-- create [dbo].[Application] 
+------------------------------------------------------------
 CREATE TABLE [dbo].[Application] (
 	[ApplicationID] [int] IDENTITY(1, 1) NOT NULL
 	,[CompanyID] [int] NULL
@@ -59,12 +68,6 @@ GO
 ------------------------------------------------------------
 -- create [dbo].[Company]
 ------------------------------------------------------------
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
 CREATE TABLE [dbo].[Company] (
 	[CompanyID] [int] IDENTITY(1, 1) NOT NULL
 	,[CompanyName] [varchar](5000) NOT NULL
@@ -136,13 +139,9 @@ CREATE TABLE [dbo].[Company] (
 	) ON [PRIMARY]
 GO
 
-/****** Object:  Table [dbo].[Contact]    Script Date: 20/05/2021 8:30:27 AM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
+------------------------------------------------------------
+-- [dbo].[Contact]
+------------------------------------------------------------
 CREATE TABLE [dbo].[Contact](
 	[ContactID] [int] IDENTITY(1,1) NOT NULL,
 	[ContactTypeID] [int] NULL,
@@ -175,13 +174,9 @@ CREATE TABLE [dbo].[Contact](
 ) ON [PRIMARY]
 GO
 
-/****** Object:  Table [dbo].[ContactCompany]    Script Date: 20/05/2021 8:31:09 AM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
+------------------------------------------------------------
+-- [dbo].[ContactCompany]
+------------------------------------------------------------
 CREATE TABLE [dbo].[ContactCompany](
 	[ContactCompanyID] [int] IDENTITY(1,1) NOT NULL,
 	[ContactID] [int] NOT NULL,
@@ -193,23 +188,53 @@ CREATE TABLE [dbo].[ContactCompany](
 ) ON [PRIMARY]
 GO
 
-/****** Object:  Table [dbo].[ContactPassword]    Script Date: 20/05/2021 8:31:40 AM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE TABLE [dbo].[ContactPassword](
-	[ContactPasswordID] [int] IDENTITY(1,1) NOT NULL,
-	[ContactID] [int] NULL,
-	[Password] [varchar](50) NULL,
-	[Salt] [varchar](50) NULL,
-	[PasswordDate] [datetime] NULL,
- CONSTRAINT [PK_ContactPassword] PRIMARY KEY CLUSTERED 
+------------------------------------------------------------
+-- create [dbo].[CompanyManSystem]
+------------------------------------------------------------
+CREATE TABLE [dbo].[CompanyManSystem](
+	[CompanyManSystemID] [int] IDENTITY(1,1) NOT NULL,
+	[ItemID] [int] NULL,
+	[CompanyID] [int] NULL,
+	[ManSystemStatus] [int] NULL,
+	[Exclusions] [varchar](500) NULL,
+	[Comments] [varchar](500) NULL,
+	[ExpiryDate] [datetime] NULL,
+	[TemplateID] [int] NULL,
+	[ManVersionID] [int] NULL,
+ CONSTRAINT [PK_CompanyManSystem] PRIMARY KEY CLUSTERED 
 (
-	[ContactPasswordID] ASC
+	[CompanyManSystemID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 
+------------------------------------------------------------
+-- create [dbo].[CompanyProject]
+------------------------------------------------------------
+CREATE TABLE [dbo].[CompanyProject](
+	[CompanyProjectID] [int] IDENTITY(1,1) NOT NULL,
+	[ProjectName] [varchar](200) NULL,
+	[RegionID] [int] NULL,
+	[CommenceDate] [datetime] NULL,
+	[CompleteDate] [datetime] NULL,
+	[ProjectValue] [float] NULL,
+	[Fee] [float] NULL,
+	[RefereeName] [varchar](100) NULL,
+	[RefereeRole] [varchar](50) NULL,
+	[RefereePhone] [varchar](20) NULL,
+	[RefereeFax] [varchar](20) NULL,
+	[RefereeMobile] [varchar](20) NULL,
+	[CompanyID] [int] NULL,
+	[WorkCategoryID] [int] NULL,
+	[ProjectTypeID] [int] NULL,
+	[CommissionTypeID] [int] NULL,
+	[ServiceID] [int] NULL,
+	[Duration] [varchar](50) NULL,
+	[ProcurementMethod] [varchar](50) NULL,
+	[OtherDetails] [varchar](200) NULL
+ CONSTRAINT [PK_CompanyProject] PRIMARY KEY CLUSTERED 
+(
+	[CompanyProjectID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90) ON [PRIMARY]
+) ON [PRIMARY]
+GO
